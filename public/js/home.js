@@ -216,7 +216,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -227,6 +226,16 @@ __webpack_require__.r(__webpack_exports__);
     TheFooter: _layout_TheFooter__WEBPACK_IMPORTED_MODULE_1__["default"],
     TheSidebar: _layout_TheSidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
     BarChart: _module_BarChart__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  data: function data() {
+    return {
+      categories: [1]
+    };
+  },
+  methods: {
+    goQuiz: function goQuiz() {
+      this.$router.push("/quiz?categories=" + this.categories);
+    }
   }
 });
 
@@ -39212,12 +39221,280 @@ var render = function() {
             _c("article", { staticClass: "col-md-8 col-xs-12" }, [
               _vm._m(0),
               _vm._v(" "),
-              _vm._m(1),
+              _c("section", { staticClass: "home-quiz__setting" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("form", [
+                  _c("label", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.categories,
+                          expression: "categories"
+                        }
+                      ],
+                      attrs: { type: "checkbox", value: "1" },
+                      domProps: {
+                        checked: Array.isArray(_vm.categories)
+                          ? _vm._i(_vm.categories, "1") > -1
+                          : _vm.categories
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.categories,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "1",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.categories = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.categories = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.categories = $$c
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v("ビジネスマナー\n                        ")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.categories,
+                          expression: "categories"
+                        }
+                      ],
+                      attrs: { type: "checkbox", value: "2" },
+                      domProps: {
+                        checked: Array.isArray(_vm.categories)
+                          ? _vm._i(_vm.categories, "2") > -1
+                          : _vm.categories
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.categories,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "2",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.categories = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.categories = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.categories = $$c
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v("一般常識\n                        ")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.categories,
+                          expression: "categories"
+                        }
+                      ],
+                      attrs: { type: "checkbox", value: "3" },
+                      domProps: {
+                        checked: Array.isArray(_vm.categories)
+                          ? _vm._i(_vm.categories, "3") > -1
+                          : _vm.categories
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.categories,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "3",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.categories = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.categories = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.categories = $$c
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v("就職・転職\n                        ")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.categories,
+                          expression: "categories"
+                        }
+                      ],
+                      attrs: { type: "checkbox", value: "4" },
+                      domProps: {
+                        checked: Array.isArray(_vm.categories)
+                          ? _vm._i(_vm.categories, "4") > -1
+                          : _vm.categories
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.categories,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "4",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.categories = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.categories = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.categories = $$c
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v("法律\n                        ")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.categories,
+                          expression: "categories"
+                        }
+                      ],
+                      attrs: { type: "checkbox", value: "5" },
+                      domProps: {
+                        checked: Array.isArray(_vm.categories)
+                          ? _vm._i(_vm.categories, "5") > -1
+                          : _vm.categories
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.categories,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "5",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.categories = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.categories = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.categories = $$c
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v("IT\n                        ")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.categories,
+                          expression: "categories"
+                        }
+                      ],
+                      attrs: { type: "checkbox", value: "6" },
+                      domProps: {
+                        checked: Array.isArray(_vm.categories)
+                          ? _vm._i(_vm.categories, "6") > -1
+                          : _vm.categories
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.categories,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "6",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.categories = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.categories = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.categories = $$c
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v("雑学\n                        ")
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          $event.stopPropagation()
+                          $event.preventDefault()
+                          return _vm.goQuiz()
+                        }
+                      }
+                    },
+                    [_vm._v("出題開始")]
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("section", { staticClass: "home-quiz__ranking" }, [
-                _vm._m(2),
-                _vm._v(" "),
                 _vm._m(3),
+                _vm._v(" "),
+                _vm._m(4),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -39227,7 +39504,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(4)
+              _vm._m(5)
             ]),
             _vm._v(" "),
             _c("the-sidebar")
@@ -39270,102 +39547,47 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "home-quiz__setting" }, [
-      _c("h2", { staticClass: "home-quiz__setting-h2" }, [
-        _c("img", {
-          staticClass: "home-quiz__setting-h2-logo",
-          attrs: { src: "/images/directory-icon.png" }
-        }),
-        _vm._v("出題設定\n                    ")
-      ]),
+    return _c("h2", { staticClass: "home-quiz__setting-h2" }, [
+      _c("img", {
+        staticClass: "home-quiz__setting-h2-logo",
+        attrs: { src: "/images/directory-icon.png" }
+      }),
+      _vm._v("出題設定\n                    ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _vm._v(
+        "\n                            全項目チェック\n                            "
+      ),
+      _c(
+        "button",
+        {
+          attrs: {
+            type: "button",
+            name: "check_all",
+            id: "check-all",
+            value: "1"
+          }
+        },
+        [_vm._v("ON")]
+      ),
       _vm._v(" "),
-      _c("form", { attrs: { action: "/quiz", method: "post" } }, [
-        _c("label", [
-          _c("input", {
-            attrs: {
-              type: "checkbox",
-              name: "categories[]",
-              value: "1",
-              checked: ""
-            }
-          }),
-          _vm._v("ビジネスマナー\n                        ")
-        ]),
-        _vm._v(" "),
-        _c("label", [
-          _c("input", {
-            attrs: { type: "checkbox", name: "categories[]", value: "2" }
-          }),
-          _vm._v("一般常識\n                        ")
-        ]),
-        _vm._v(" "),
-        _c("label", [
-          _c("input", {
-            attrs: { type: "checkbox", name: "categories[]", value: "3" }
-          }),
-          _vm._v("就職・転職\n                        ")
-        ]),
-        _vm._v(" "),
-        _c("label", [
-          _c("input", {
-            attrs: { type: "checkbox", name: "categories[]", value: "4" }
-          }),
-          _vm._v("法律\n                        ")
-        ]),
-        _vm._v(" "),
-        _c("label", [
-          _c("input", {
-            attrs: { type: "checkbox", name: "categories[]", value: "5" }
-          }),
-          _vm._v("IT\n                        ")
-        ]),
-        _vm._v(" "),
-        _c("label", [
-          _c("input", {
-            attrs: { type: "checkbox", name: "categories[]", value: "6" }
-          }),
-          _vm._v("雑学\n                        ")
-        ]),
-        _vm._v(" "),
-        _c("div", {}, [
-          _vm._v(
-            "\n                            全項目チェック\n                            "
-          ),
-          _c(
-            "button",
-            {
-              attrs: {
-                type: "button",
-                name: "check_all",
-                id: "check-all",
-                value: "1"
-              }
-            },
-            [_vm._v("ON")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              attrs: {
-                type: "button",
-                name: "check_all_off",
-                id: "check-all-off",
-                value: "1"
-              }
-            },
-            [_vm._v("OFF")]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [_vm._v("出題開始")]
-        ),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "hidden", name: "_token", value: "" } })
-      ])
+      _c(
+        "button",
+        {
+          attrs: {
+            type: "button",
+            name: "check_all_off",
+            id: "check-all-off",
+            value: "1"
+          }
+        },
+        [_vm._v("OFF")]
+      )
     ])
   },
   function() {
