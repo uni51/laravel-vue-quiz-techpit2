@@ -9,9 +9,9 @@
 </head>
 
 <body>
-<div id="app">
-    <app />
-</div>
-<script src="/js/home.js"></script>
+    <div id="app">
+        <router-view />
+    </div>
+    <script src="/js/app.js"></script>
 </body>
 </html>
