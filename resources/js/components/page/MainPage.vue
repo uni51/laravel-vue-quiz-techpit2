@@ -1,7 +1,7 @@
 <template>
     <div>
         <the-header />
-        <router-view/>
+        <router-view :errors="errors"/>
         <the-footer />
     </div>
 </template>
@@ -16,5 +16,10 @@ export default {
         TheHeader,
         TheFooter
     },
+    props: {
+        errors: {
+            type: Object | Array
+        }
+    }
 }
 </script>

@@ -2238,6 +2238,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     TheHeader: _layout_TheHeader__WEBPACK_IMPORTED_MODULE_0__["default"],
     TheFooter: _layout_TheFooter__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    errors: {
+      type: Object | Array
+    }
   }
 });
 
@@ -2560,6 +2565,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
  // 使用するバリデーションルール
 
@@ -2591,6 +2604,11 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_1__["extend"])("confirmed", _object
       password_confirmation: "",
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
+  },
+  props: {
+    errors: {
+      type: Array | Object
+    }
   },
   methods: {
     register: function register() {
@@ -59112,7 +59130,7 @@ var render = function() {
     [
       _c("the-header"),
       _vm._v(" "),
-      _c("router-view"),
+      _c("router-view", { attrs: { errors: _vm.errors } }),
       _vm._v(" "),
       _c("the-footer")
     ],
@@ -59410,6 +59428,26 @@ var render = function() {
               _c("div", { staticClass: "panel-heading text-center" }, [
                 _vm._v("ユーザー登録")
               ]),
+              _vm._v(" "),
+              _vm.errors.length !== 0
+                ? _c("div", { staticClass: "form-group has-error" }, [
+                    _c(
+                      "div",
+                      { staticClass: "alert alert-danger text-center" },
+                      [
+                        _vm._v(
+                          "\n                                ユーザー登録実行時にエラーが発生しました\n                                "
+                        ),
+                        _vm._l(_vm.errors, function(error, key, index) {
+                          return _c("div", { key: index }, [
+                            _vm._v(_vm._s(error))
+                          ])
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "div",
