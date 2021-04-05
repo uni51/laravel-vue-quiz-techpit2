@@ -65,10 +65,12 @@
                         <h2 class="home__notice-h2">
                             <img class="home__notice-h2-logo" src="/images/news-icon.png" />お知らせ情報
                         </h2>
-                        <dl>
-                            <dt>2019/08/23</dt>
-                            <dd>サイトを開設しました。</dd>
+
+                        <dl v-for="(info, index) in information" :key="index">
+                            <dt>{{info.created_at}}</dt>
+                            <dd>{{info.information}}</dd>
                         </dl>
+
                     </section>
                 </article>
                 <the-sidebar></the-sidebar>
@@ -93,8 +95,15 @@ export default {
     },
     data() {
         return {
-            categories: [1]
+            categories: [1],
+            information :[]
         };
+    },
+    // 基本的に画面描画時の初期処理を実行するとき(API通信など)にmounted()で処理を定義することが多い
+    mounted() {
+        this.$http.get("/api/information").then(response => {
+            this.information = response.data;
+        });
     },
     methods: {
         goQuiz() {

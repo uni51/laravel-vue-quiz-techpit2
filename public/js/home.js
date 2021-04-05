@@ -216,6 +216,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -229,8 +231,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      categories: [1]
+      categories: [1],
+      information: []
     };
+  },
+  // 基本的に画面描画時の初期処理を実行するとき(API通信など)にmounted()で処理を定義することが多い
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$http.get("/api/information").then(function (response) {
+      _this.information = response.data;
+    });
   },
   methods: {
     goQuiz: function goQuiz() {
@@ -39504,7 +39515,22 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(5)
+              _c(
+                "section",
+                { staticClass: "home__notice" },
+                [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _vm._l(_vm.information, function(info, index) {
+                    return _c("dl", { key: index }, [
+                      _c("dt", [_vm._v(_vm._s(info.created_at))]),
+                      _vm._v(" "),
+                      _c("dd", [_vm._v(_vm._s(info.information))])
+                    ])
+                  })
+                ],
+                2
+              )
             ]),
             _vm._v(" "),
             _c("the-sidebar")
@@ -39641,20 +39667,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "home__notice" }, [
-      _c("h2", { staticClass: "home__notice-h2" }, [
-        _c("img", {
-          staticClass: "home__notice-h2-logo",
-          attrs: { src: "/images/news-icon.png" }
-        }),
-        _vm._v("お知らせ情報\n                    ")
-      ]),
-      _vm._v(" "),
-      _c("dl", [
-        _c("dt", [_vm._v("2019/08/23")]),
-        _vm._v(" "),
-        _c("dd", [_vm._v("サイトを開設しました。")])
-      ])
+    return _c("h2", { staticClass: "home__notice-h2" }, [
+      _c("img", {
+        staticClass: "home__notice-h2-logo",
+        attrs: { src: "/images/news-icon.png" }
+      }),
+      _vm._v("お知らせ情報\n                    ")
     ])
   }
 ]
