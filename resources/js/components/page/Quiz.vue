@@ -76,6 +76,7 @@
             </div>
         </main>
         <the-footer></the-footer>
+        <the-modal :correctPercentageObject="correctPercentageObject" ref="modal" ></the-modal>
     </div>
 </template>
 
@@ -83,12 +84,14 @@
 import TheHeader from "../layout/TheHeader";
 import TheFooter from "../layout/TheFooter";
 import TheSidebar from "../layout/TheSidebar";
+import TheModal from "../module/TheModal";
 
 export default {
     components: {
         TheHeader,
         TheFooter,
         TheSidebar,
+        TheModal
     },
     data() {
         return {
@@ -105,6 +108,7 @@ export default {
             score: 0,
             quizNumber: 1,
             categoryName: "",
+            correctPercentageObject: {}
         };
     },
     mounted() {
@@ -112,12 +116,9 @@ export default {
         this.$http.get(`/api/quiz?categories=${categories}`).then(response => {
             this.quizData = response.data;
             this.findNextQuiz(0);
-            console.log(this.quizData);
         });
     },
     methods: {
-
-        // ここから追加
         goAnswer(selectAnswerNum) {
             if (selectAnswerNum === 0) {
                 // selectAnswerNumが0の場合は、click 「正解を表示する」ボタンのクリック alert-info、alert-dangerを非表示
@@ -140,8 +141,6 @@ export default {
             if (this.quizNumber >= 10) {
                 this.endQuiz();
             }
-            // ここまで追加
-
         },
         findNextQuiz(quizNumber) {
             this.title = this.quizData[quizNumber].title;
@@ -155,8 +154,6 @@ export default {
             this.correctAnswerNo = this.quizData[quizNumber].answer.correct_answer_no;
             this.categoryName = this.quizData[quizNumber].category.name;
         },
-
-        // ここから追加
         goNextQuiz() {
             // 次の問題へをクリック
             if (this.quizNumber >= 10) {
@@ -175,9 +172,15 @@ export default {
             this.isQuizFinish = true;
             this.answerNo = "-";
             this.isAlreadyAnswered = true;
-        },
-        // ここまで追加
 
+            this.correctPercentageObject = {
+                correctScore: this.score,
+                mistakeScore: 10 - this.score
+            };
+        },
+        showResult() {
+            this.$refs.modal.render();
+        }
     }
 };
 </script>
