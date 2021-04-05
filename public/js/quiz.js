@@ -13694,7 +13694,7 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/shimomura/learn/laravel_vue_quiz/resources/js/quiz.js */"./resources/js/quiz.js");
+module.exports = __webpack_require__(/*! /Users/omokaji/learn/laravel_vue_quiz/resources/js/quiz.js */"./resources/js/quiz.js");
 
 
 /***/ })
