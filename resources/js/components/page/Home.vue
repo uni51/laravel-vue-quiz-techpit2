@@ -16,23 +16,8 @@
                             <img class="home-quiz__setting-h2-logo" src="/images/directory-icon.png" />出題設定
                         </h2>
                         <form>
-                            <label>
-                                <input type="checkbox" v-model="categories" value="1" />ビジネスマナー
-                            </label>
-                            <label>
-                                <input type="checkbox" v-model="categories" value="2" />一般常識
-                            </label>
-                            <label>
-                                <input type="checkbox" v-model="categories" value="3" />就職・転職
-                            </label>
-                            <label>
-                                <input type="checkbox" v-model="categories" value="4" />法律
-                            </label>
-                            <label>
-                                <input type="checkbox" v-model="categories" value="5" />IT
-                            </label>
-                            <label>
-                                <input type="checkbox" v-model="categories" value="6" />雑学
+                            <label v-for="(cate, index) in category" :key="index">
+                                <input type="checkbox" v-model="categories" :value="cate.id" />{{cate.name}}&ensp;
                             </label>
                             <div class>
                                 全項目チェック
@@ -96,11 +81,15 @@ export default {
     data() {
         return {
             categories: [1],
-            information :[]
+            information :[],
+            category: [],
         };
     },
     // 基本的に画面描画時の初期処理を実行するとき(API通信など)にmounted()で処理を定義することが多い
     mounted() {
+        this.$http.get("/api/category").then(response => {
+            this.category = response.data;
+        });
         this.$http.get("/api/information").then(response => {
             this.information = response.data;
         });
