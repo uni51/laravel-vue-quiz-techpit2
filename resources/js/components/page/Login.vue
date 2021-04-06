@@ -7,6 +7,13 @@
                         <div class="panel panel-default">
                             <div class="panel-heading text-center">ログイン</div>
 
+                            <div class="form-group has-error" v-if="errors.length !== 0">
+                                <div class="alert alert-danger text-center">
+                                    ログイン時にエラーが発生しました
+                                    <div v-for="(error, key, index) in errors" :key="index">{{error}}</div>
+                                </div>
+                            </div>
+
                             <div class="panel-body">
                                 <ValidationObserver
                                     class="form-horizontal"
@@ -102,5 +109,18 @@ export default {
                 .getAttribute("content")
         };
     },
+    props: {
+        errors: {
+            type: Array | Object
+        }
+    },
+    methods: {
+        async login() {
+            const isValid = await this.$refs.observer.validate();
+            if (isValid) {
+                document.querySelector("#login").submit();
+            }
+        }
+    }
 };
 </script>
