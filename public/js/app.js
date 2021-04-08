@@ -2154,6 +2154,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2174,7 +2175,8 @@ __webpack_require__.r(__webpack_exports__);
         hoverBorderWidth: 10,
         labels: ["正解", "不正解"],
         datasets: []
-      }
+      },
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
   methods: {
@@ -2188,7 +2190,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.chart.renderPieChart();
     },
     quizFinish: function quizFinish() {
-      location.href = "/";
+      document.querySelector("#finish-form").submit();
     }
   }
 });
@@ -59121,61 +59123,77 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "modal-result",
-          tabindex: "-1",
-          "aria-hidden": "true",
-          role: "dialog"
-        }
-      },
-      [
-        _c("div", { staticClass: "modal-dialog" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "modal-body text-center" },
-              [
-                _c("pie-chart", {
-                  ref: "chart",
-                  attrs: { chartData: _vm.chartData }
-                }),
-                _vm._v(" "),
-                _c("div", [
-                  _vm._v(
-                    "正解率 " +
-                      _vm._s(_vm.correctPercentageObject["correctScore"] * 10) +
-                      " %"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("input", { attrs: { type: "hidden", name: "correctRatio" } })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-footer" }, [
+  return _c(
+    "form",
+    { attrs: { action: "/insertRanking", method: "POST", id: "finish-form" } },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "modal-result",
+            tabindex: "-1",
+            "aria-hidden": "true",
+            role: "dialog"
+          }
+        },
+        [
+          _c("div", { staticClass: "modal-dialog" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
               _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { type: "button" },
-                  on: { click: _vm.quizFinish }
-                },
-                [_vm._v("終了する")]
-              )
+                "div",
+                { staticClass: "modal-body text-center" },
+                [
+                  _c("pie-chart", {
+                    ref: "chart",
+                    attrs: { chartData: _vm.chartData }
+                  }),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "正解率 " +
+                        _vm._s(
+                          _vm.correctPercentageObject["correctScore"] * 10
+                        ) +
+                        " %"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "correctRatio" },
+                    domProps: {
+                      value: _vm.correctPercentageObject["correctScore"] * 10
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.quizFinish }
+                  },
+                  [_vm._v("終了する")]
+                )
+              ])
             ])
           ])
-        ])
-      ]
-    )
-  ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
