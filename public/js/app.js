@@ -2088,6 +2088,43 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/module/LineChart.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/module/LineChart.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Line"],
+  props: {
+    chartData: {
+      type: Object
+    }
+  },
+  methods: {
+    renderLineChart: function renderLineChart() {
+      this.renderChart(this.chartData, {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              min: 0,
+              max: 100
+            }
+          }]
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/module/PieChart.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/module/PieChart.vue?vue&type=script&lang=js& ***!
@@ -2570,6 +2607,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layout_TheSidebar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../layout/TheSidebar */ "./resources/js/components/layout/TheSidebar.vue");
+/* harmony import */ var _module_LineChart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../module/LineChart */ "./resources/js/components/module/LineChart.vue");
 //
 //
 //
@@ -2590,13 +2628,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    TheSidebar: _layout_TheSidebar__WEBPACK_IMPORTED_MODULE_0__["default"]
+    TheSidebar: _layout_TheSidebar__WEBPACK_IMPORTED_MODULE_0__["default"],
+    LineChart: _module_LineChart__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      changeCorrectRatioData: [],
+      lineChartData: {}
+    };
   },
   mounted: function mounted() {
-    this.$http.get("/api/user").then(function (response) {
-      console.log(response.data);
+    var _this = this;
+
+    this.$http.get("/api/mypage").then(function (response) {
+      _this.changeCorrectRatioData = response.data;
+      _this.lineChartData = Object.assign({}, _this.lineChartData, {
+        labels: _this.changeCorrectRatioData.created_at,
+        datasets: [{
+          label: ["最高得点率"],
+          backgroundColor: "rgba(0, 170, 248, 0.47)",
+          borderColor: "rgba(0, 170, 248, 1)",
+          data: _this.changeCorrectRatioData.percentage_correct_answer
+        }]
+      });
+
+      _this.$nextTick(function () {
+        _this.$refs.chart.renderLineChart();
+      });
     });
   }
 });
@@ -60002,7 +60063,38 @@ var render = function() {
       _c(
         "div",
         { staticClass: "container" },
-        [_vm._m(0), _vm._v(" "), _c("the-sidebar")],
+        [
+          _c("article", { staticClass: "col-md-8 col-xs-12" }, [
+            _c(
+              "section",
+              { staticClass: "article-section" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm.changeCorrectRatioData.length !== 0
+                  ? _c("h3", [
+                      _vm._v(
+                        "直近" +
+                          _vm._s(
+                            _vm.changeCorrectRatioData.percentage_correct_answer
+                              .length
+                          ) +
+                          "回の正解率推移"
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("line-chart", {
+                  ref: "chart",
+                  attrs: { chartData: _vm.lineChartData }
+                })
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("the-sidebar")
+        ],
         1
       )
     ])
@@ -60013,20 +60105,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "col-md-8 col-xs-12" }, [
-      _c("section", { staticClass: "article-section" }, [
-        _c("h2", { staticClass: "mypage-h2" }, [
-          _c("img", {
-            staticClass: "mypage__logo",
-            attrs: { src: "/images/mypage-icon.png" }
-          }),
-          _vm._v("マイページ\n                    ")
-        ]),
-        _vm._v(" "),
-        _c("h3", [_vm._v("直近 回の正解率推移")]),
-        _vm._v(" "),
-        _c("canvas")
-      ])
+    return _c("h2", { staticClass: "mypage-h2" }, [
+      _c("img", {
+        staticClass: "mypage__logo",
+        attrs: { src: "/images/mypage-icon.png" }
+      }),
+      _vm._v("マイページ\n                    ")
     ])
   }
 ]
@@ -76338,6 +76422,56 @@ component.options.__file = "resources/js/components/module/BarChart.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BarChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./BarChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/module/BarChart.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BarChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/module/LineChart.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/module/LineChart.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LineChart.vue?vue&type=script&lang=js& */ "./resources/js/components/module/LineChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _LineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/module/LineChart.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/module/LineChart.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/module/LineChart.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./LineChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/module/LineChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
