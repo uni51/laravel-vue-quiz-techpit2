@@ -79289,7 +79289,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
-/* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
@@ -79310,13 +79310,47 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: '/mypage',
     name: 'mypage',
-    component: _components_page_Mypage__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _components_page_Mypage__WEBPACK_IMPORTED_MODULE_6__["default"],
+    meta: {
+      requiresAuth: true
+    }
   }, {
     path: '/keyword',
     name: 'keyword',
     component: _components_page_Keyword__WEBPACK_IMPORTED_MODULE_7__["default"]
   }]
-}));
+}); // グローバルビフォーガード
+
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (rec) {
+    return rec.meta.requiresAuth;
+  })) {
+    router.app.$http.get("/api/user").then(function (response) {
+      var user = response.data;
+
+      if (user) {
+        next();
+      } else {
+        next({
+          path: '/login'
+        });
+      }
+    })["catch"](function (error) {
+      if (error.response.status === 401) {
+        alert("未認証のユーザーのためログイン画面でログインを行ってください");
+      } else {
+        alert("予期しないエラーが発生しました。再度ログインを行ってください");
+      }
+
+      next({
+        path: '/login'
+      });
+    });
+  } else {
+    next();
+  }
+});
+/* harmony default export */ __webpack_exports__["default"] = (router);
 
 /***/ }),
 
